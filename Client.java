@@ -20,7 +20,8 @@ public class Client implements Runnable {
     private String username = "Desconocido";
     private boolean connected = false;
 
-    public ClientHandler(String ip, int port) {
+    // ✅ Constructor corregido
+    public Client(String ip, int port) {
         try {
             socket = new Socket(ip, port);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -39,7 +40,7 @@ public class Client implements Runnable {
             return;
         }
 
-        // Hilo para leer mensajes entrantes
+        // 🧵 Hilo para leer mensajes entrantes
         Thread readerThread = new Thread(() -> {
             try {
                 String serverMsg;
@@ -52,7 +53,7 @@ public class Client implements Runnable {
         });
         readerThread.start();
 
-        // Hilo principal para enviar mensajes
+        // 💬 Hilo principal para enviar mensajes
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Introduce tu nombre de usuario: ");
             username = scanner.nextLine();
