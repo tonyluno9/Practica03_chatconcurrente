@@ -16,13 +16,13 @@ public class ServerMain {
     private static final Set<ClientHandler> clients = Collections.synchronizedSet(new HashSet<>());
 
     public static void main(String[] args) {
-        System.out.println("🖥️ Servidor de chat iniciado en el puerto " + PORT);
+        System.out.println(" Servidor de chat iniciado en el puerto " + PORT);
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
 
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("🔗 Nuevo cliente conectado: " + clientSocket.getInetAddress().getHostAddress());
+                System.out.println(" Nuevo cliente conectado: " + clientSocket.getInetAddress().getHostAddress());
 
                 ClientHandler clientHandler = new ClientHandler(clientSocket, clients);
                 clients.add(clientHandler);
@@ -32,7 +32,7 @@ public class ServerMain {
             }
 
         } catch (IOException e) {
-            System.out.println("❌ Error en el servidor: " + e.getMessage());
+            System.out.println(" Error en el servidor: " + e.getMessage());
         }
     }
 }
